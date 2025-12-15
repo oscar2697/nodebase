@@ -1,9 +1,11 @@
-import Image from "next/image";
+import prisma from "@/lib/db";
 
-export default function Home() {
+export default async function Home() {
+  const users = await prisma.user.findMany()
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      Hallo
+      {JSON.stringify(users)}
     </div>
   );
 }

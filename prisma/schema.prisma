@@ -23,9 +23,9 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
+  //@@map("user")
 
   @@unique([email])
-  //@@map("user")
 }
 
 model Session {
@@ -38,10 +38,10 @@ model Session {
   userAgent String?
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  //@@map("session")
 
   @@unique([token])
   @@index([userId])
-  //@@map("session")
 }
 
 model Account {
@@ -59,9 +59,9 @@ model Account {
   password              String?
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
+  //@@map("account")
 
   @@index([userId])
-  //@@map("account")
 }
 
 model Verification {
@@ -71,7 +71,12 @@ model Verification {
   expiresAt  DateTime
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+  //@@map("verification")
 
   @@index([identifier])
-  //@@map("verification")
+}
+
+model Workflow {
+  id   String @id @default(cuid())
+  name String
 }

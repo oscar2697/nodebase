@@ -128,3 +128,4 @@ ERROR [portable_pty::win::psuedocon] CreateProcessW `"C:\\Users\\lindo\\AppData\
 ERROR [lib::error] Error: channel closed
 ERROR [portable_pty::win::psuedocon] CreateProcessW `"C:\\Users\\lindo\\AppData\\Roaming\\npm\\npm run dev\0"` in cwd `Some("C:\\Users\\lindo\\Documents\\Workspace\\NextJs\\nodebase\0")` failed: %1 is not a valid Win32 application. (os error 193)
 ERROR [portable_pty::win::psuedocon] CreateProcessW `"C:\\Users\\lindo\\AppData\\Roaming\\npm\\npm run inngest:dev\0"` in cwd `Some("C:\\Users\\lindo\\Documents\\Workspace\\NextJs\\nodebase\0")` failed: %1 is not a valid Win32 application. (os error 193)
+ERROR [lib::error] Error: channel closed

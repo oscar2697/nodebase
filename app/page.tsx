@@ -1,17 +1,21 @@
 'use client'
 
-import { requireAuth } from "@/lib/auth-utils";
-import { caller } from "@/trpc/server";
-import LogoutButton from "./logout";
-import { useTRPC } from "@/trpc/client";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
+import LogoutButton from "./logout"
+import { useTRPC } from "@/trpc/client"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { Button } from "@/components/ui/button"
+import { toast } from "sonner"
 
 export default function Home() {
   const trpc = useTRPC()
   const queryClient = useQueryClient()
   const { data } = useQuery(trpc.getWorkflows.queryOptions())
+
+  const testAi = useMutation(trpc.testAi.mutationOptions({
+    onSuccess: () => {
+      toast.success('AI Job queued')
+    }
+  }))
 
   const create = useMutation(trpc.createWorkflow.mutationOptions({
     onSuccess: () => {
@@ -28,6 +32,13 @@ export default function Home() {
       </div>
 
       <Button
+        disabled={testAi.isPending}
+        onClick={() => testAi.mutate()}
+      >
+        Test AI
+      </Button>
+
+      <Button
         disabled={create.isPending}
         onClick={() => create.mutate()}
       >
@@ -36,5 +47,5 @@ export default function Home() {
 
       <LogoutButton />
     </div>
-  );
+  )
 }
